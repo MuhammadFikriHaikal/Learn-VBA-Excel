@@ -1,0 +1,31 @@
+Dim Jenis
+
+Sub penggantimakrodistribusi()
+'
+' penggantimakrodistribusi Macro
+'
+
+    Jenis = Range("C9")
+    
+    Range("C7,C11,C13,C15").Select
+    Range("C15").Activate
+    Selection.Copy
+    If Jenis = "Kas Masuk" Then
+        Range("G3").Select
+    ElseIf Jenis = "Kas Keluar" Then
+        Range("M3").Select
+    End If
+    Selection.End(xlDown).Select
+    ActiveCell.Offset(1, 0).Range("A1").Select
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=True
+    Range("C15").Select
+    Application.CutCopyMode = False
+    Selection.ClearContents
+    Range("C13").Select
+    Selection.ClearContents
+    Range("C11").Select
+    Selection.ClearContents
+    Range("C7").Select
+    Selection.ClearContents
+End Sub
